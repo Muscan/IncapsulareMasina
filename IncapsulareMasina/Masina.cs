@@ -111,6 +111,20 @@ namespace IncapsulareMasina
             descriereMasina += "Pret: " + this.pret + "\n";
             return descriereMasina;
         }
+
+
+
+        //todo functie care transforma proprietatile intr-un string 
+
+
+
+        public String toSave()
+        {
+
+
+            return  nume + "," + automatic + "," + manual + "," + ncap + "," + pret;
+
+        }
     }
-   
+
 }
