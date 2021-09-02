@@ -14,7 +14,7 @@ namespace IncapsulareMasina
         {
             masini = new List<Masina>();
 
-            load();
+            readFileTxt();
         }
 
         public void afisare()
@@ -25,6 +25,11 @@ namespace IncapsulareMasina
 
                 Console.WriteLine(masini[i].descriereMasina());
             }
+        }
+
+        public void afisareOneCar(Masina masina)
+        {
+            Console.WriteLine(masina.descriereMasina());
         }
 
         //functie ce returneaza masina cu pretul minim
@@ -88,7 +93,7 @@ namespace IncapsulareMasina
         }
 
 
-        //todo o functie ce primeste ca parametru o masina si rretuneaza true daca o dauga sau false daca nu see poate adauga
+        //todo o functie ce primeste ca parametru o masina si returneaza true daca o adauga sau false daca nu se poate adauga
 
 
         public bool AddCar(Masina masina)
@@ -100,8 +105,11 @@ namespace IncapsulareMasina
             {
 
                 this.masini.Add(masina);
+                Console.WriteLine("Car added!");
                 return true;
+
             }
+            Console.WriteLine("Car exists");
             return false;
         }
 
@@ -113,8 +121,10 @@ namespace IncapsulareMasina
             if (p != -1)
             {
                 masini[p].setPret(pret);
+                Console.WriteLine("Pretul masinii a fost updatat");
                 return true;
             }
+            Console.WriteLine("Masina nu a fost gasita");
             return false;
 
         }
@@ -163,7 +173,7 @@ namespace IncapsulareMasina
                 masini[p].setPret(pret);
                 pretNou = pret;
             }
-            return pret;
+            return pretNou;
 
         }
 
@@ -174,18 +184,21 @@ namespace IncapsulareMasina
             int p = pozitieMasina(masina);
             if (p != -1)
             {
+                Console.WriteLine("Car " + masini[p].getNume() + " deleted!");
                 this.masini.RemoveAt(p);
+                
                 return true;
 
             }
+            Console.WriteLine("Car not deleted");
             return false;
 
         }
 
-        public void load()
+        public void readFileTxt()
         {
 
-            StreamReader read = new StreamReader(@"..masini.txt");
+            StreamReader read = new StreamReader(@"../../../Files/masini.txt");
 
             String line = "";
 
@@ -206,30 +219,25 @@ namespace IncapsulareMasina
 
                 double pret = Double.Parse(proprietati[3]);
 
-
-                Masina masina = new Masina(nume, automatic, manual, ncap, pret);
-
-
+                //declarare obiect de tip masina.
+                //Initializare
+                Masina masina = new Masina(nume, automatic, manual, ncap, pret);              
                 masini.Add(masina);
-
             }
-
             read.Close();
-
-
-
-
         }
 
 
-        public string toSaveAll()
+        public string toStringAllObjectsFromFile()
         {
             string tot = "";
 
             for (int i = 0; i < masini.Count; i++)
             {
-
-                tot += masini[i].toSave() + "\n";
+                tot += masini[i].takeCarPropertiesFromClassAndConvertToString() + "\n";
+                //""Dacia"..
+                //"JMW", true, false, '9', 123
+                
             }
 
 
@@ -237,13 +245,13 @@ namespace IncapsulareMasina
         }
 
 
-        public void save()
+        public void saveToFileTxt()
         {
 
-            StreamWriter write = new StreamWriter(@"\masini.txt");
+            StreamWriter write = new StreamWriter(@"../../../Files/masini.txt");
 
 
-            write.WriteLine(this.toSaveAll());
+            write.WriteLine(this.toStringAllObjectsFromFile());
 
 
             write.Close();

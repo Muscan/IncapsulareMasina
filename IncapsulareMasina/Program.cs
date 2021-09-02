@@ -11,11 +11,15 @@ namespace IncapsulareMasina
 
 
             ControllerMasina controller = new ControllerMasina();
+            //Masina myCar = new Masina("JMW", true, false, '9', 123);
+            //controller.AddCar(myCar);
+            //controller.saveToFileTxt();
+            //controller.afisareOneCar(myCar);
+           
 
-            
-            controller.DeleteCar("cE MAI FACI");
+            controller.DeleteCar("JMW");
 
-            controller.save();
+            controller.saveToFileTxt();
 
             controller.afisare();
 
@@ -23,7 +27,6 @@ namespace IncapsulareMasina
 
 
 
-           
 
 
 
@@ -33,13 +36,14 @@ namespace IncapsulareMasina
 
 
 
-            
 
 
-           
 
 
-           
+
+
+
+
 
 
 

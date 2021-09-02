@@ -8,5 +8,4 @@ Skoda,True,False,8,8
 Fiat,False,True,9,9
 Daihatsu,True,False,1,1
 testA,False,True,2,2
-JMW,True,False,9,123
 

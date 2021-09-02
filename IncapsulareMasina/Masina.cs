@@ -118,7 +118,7 @@ namespace IncapsulareMasina
 
 
 
-        public String toSave()
+        public String takeCarPropertiesFromClassAndConvertToString()
         {
 
 
